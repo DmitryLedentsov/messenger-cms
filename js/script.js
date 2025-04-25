@@ -7,10 +7,18 @@ var P4MessengerModule = (function() {
   return { 
     pluginName: "p4-messenger", //название плагина
     
-
+    loadScript : function (url, callback) {
+      $.ajax({
+          url: url,
+          dataType: 'script',
+          success: callback,
+          async: true
+      });
+    },
 
     // Функция инициализации, выполняемая, когда страница админки будет готова вывести настройки плагина
-    init: function() {      
+    init: function() {  
+      console.log("p4-messenger")    ;
       
        
         
@@ -44,6 +52,7 @@ var P4MessengerModule = (function() {
           // Если успех, обновляем страницу настроек плагина  
           if (response.status == "success") {
             admin.refreshPanel()
+            location.reload();
           }
         }
         )
@@ -52,9 +61,22 @@ var P4MessengerModule = (function() {
       
     },
 
+    loadWidget: function(){
+      $('#messenger').empty();
+      let serverUrl = $('input[name="server_url"]').val()+'/';
+      console.log(serverUrl);
+      messengerWidget('messenger',{serverUrl:serverUrl});
+    }
+
 
   }
 })();
 
 // Инициализация скрипта
 P4MessengerModule.init()
+
+  let serverUrl = $('input[name="server_url"]').val()+'/';
+  P4MessengerModule.loadScript(serverUrl+'js/widget.js', ()=>{
+    P4MessengerModule.loadWidget();
+  })
+ 

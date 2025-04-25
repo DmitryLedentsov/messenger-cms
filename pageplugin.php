@@ -1,5 +1,5 @@
 <div class="section-<?php echo $pluginName ?>"><!-- $pluginName - задает название секции для разграничения JS скрипта -->
-
+ 
   <!-- Тут начинается верстка видимой части станицы настроек плагина-->
   <div class="widget-body">
 
@@ -52,6 +52,11 @@
       </a> <!-- Кнопка сохранения настроек плагина -->
       <div class="clear"></div>
     </div>
+
+    <div id="messenger">
+   
+    </div>
   </div>
 </div>
+
 

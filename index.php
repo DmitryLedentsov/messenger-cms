@@ -85,17 +85,18 @@ class P4Messenger {
     $pluginName = self::$pluginName;
     $options = self::getOptions();   
 
-    self::preparePageSettings();
+    self::preparePageSettings($options);
 	
     include('pageplugin.php');
   }
 
-  private static function preparePageSettings() {
+  private static function preparePageSettings($options) {
     echo '   
       <link rel="stylesheet" href="'.SITE.'/'.self::$path.'/css/admin.css?'.rand(0,1000).'" type="text/css" />
       <link rel="stylesheet" href="'.SITE.'/'.self::$path.'/css/timepicker.min.css" type="text/css" /> 
 
       <script>
+       //includeJS("'.$options['server_url'].'/js/widget.js"); 
         includeJS("'.SITE.'/'.self::$path.'/js/script.js"); 
         
         includeJS("'.SITE.'/'.self::$path.'/js/jquery-ui-timepicker-addon.js");
