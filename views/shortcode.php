@@ -85,7 +85,7 @@
                 removeItem(`.message-item[data-id=${data.id}]`);
             }
             
-            this.initializeChat = async () => {
+            this.initializeChat = async (create=true) => {
                 let chatName = this.getSetting('chat_prefix')+this.user.login;
                 let chats = await this.api.findChats(chatName);
                 let chat = {};
@@ -98,7 +98,10 @@
                     messages.forEach(msg => {
                         appendListItem('#messages', this.renderMessage(msg))
                     });
-                } else {
+                } else if(!create){
+                    return;
+                }
+                else {
                     let adminLogin = this.getSetting('admin');
                     chat = await this.api.createChat({name:chatName, users:[adminLogin]});
                     let admin = (await this.api.findUsersInChat(chat.id,adminLogin))[0];
@@ -148,7 +151,7 @@
             
             await this.auth();
             this.api.socketClientConnect();
-            await this.initializeChat(); // Initialize chat after authentication
+            await this.initializeChat(false); // Initialize chat after authentication
 
             function appendListItem(listName, listItemHTML) {
                 $(listItemHTML)

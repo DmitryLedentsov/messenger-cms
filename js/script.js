@@ -75,8 +75,8 @@ var P4MessengerModule = (function() {
 // Инициализация скрипта
 P4MessengerModule.init()
 
-  let serverUrl = $('input[name="server_url"]').val()+'/';
-  P4MessengerModule.loadScript(serverUrl+'js/widget.js', ()=>{
-    P4MessengerModule.loadWidget();
-  })
+let serverUrl = $('input[name="server_url"]').val()+'/';
+P4MessengerModule.loadScript(serverUrl+'js/widget.js', ()=>{
+  P4MessengerModule.loadWidget();
+})
  
