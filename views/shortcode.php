@@ -96,7 +96,7 @@
                     // Load existing messages
                     let messages = await this.api.getMessagesFromChat(this.currentChatId);
                     messages.forEach(msg => {
-                        appendListItem('#messages', this.renderMessage(msg))
+                        prependListItem('#messages', this.renderMessage(msg))
                     });
                 } else if(!create){
                     return;
@@ -160,6 +160,10 @@
                     .appendTo(listName)
                     .slideDown(100)
                     .animate({ opacity: 1.0 })
+            }
+            
+            function prependListItem(selector, html) {
+                $(selector).prepend(html);
             }
 
             function removeItem(name) {
